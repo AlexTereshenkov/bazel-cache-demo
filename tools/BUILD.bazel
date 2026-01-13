@@ -1,0 +1,17 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+py_binary(
+    name = "archiver",
+    srcs = ["archiver.py"],
+    data = [
+        # http_file
+        "@zstd_cli//file",
+        # http_archive
+        "@yq_cli//:yq_linux_amd64",
+    ],
+    deps = [
+        "@rules_python//python/runfiles",
+    ],
+)
